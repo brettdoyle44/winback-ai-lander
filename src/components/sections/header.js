@@ -1,14 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import Firebase from "firebase"
+import config from "../../config"
+import { v1 as uuidv1 } from "uuid"
 
 import { Container } from "../global"
 
 const Header = () => {
+  const [email, setEmail] = useState("")
+  const [submit, setSubmit] = useState(false)
   const data = useStaticQuery(graphql`
     query {
-      file(sourceInstanceName: { eq: "product" }, name: { eq: "green-skew" }) {
+      file(
+        sourceInstanceName: { eq: "product" }
+        name: { eq: "output-onlinepngtools" }
+      ) {
         childImageSharp {
           fluid(maxWidth: 1000) {
             ...GatsbyImageSharpFluid_tracedSVG
@@ -18,8 +26,24 @@ const Header = () => {
     }
   `)
 
-  const handleSubmit = event => {
+  async function handleSubmit(event) {
     event.preventDefault()
+    try {
+      await Firebase.initializeApp(config)
+      await writeUserData(uuidv1(), email)
+      setSubmit(true)
+      setEmail("")
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  function writeUserData(userId, theEmail) {
+    Firebase.database()
+      .ref("users/" + userId)
+      .set({
+        email: theEmail,
+      })
   }
 
   return (
@@ -27,24 +51,30 @@ const Header = () => {
       <Container>
         <Flex>
           <HeaderTextGroup>
-            <Subtitle>Personal Finance</Subtitle>
+            <Subtitle>Win Back Your Customers</Subtitle>
             <h1>
-              All your money,
+              Re-engagement
               <br />
-              one account
+              made easy.
             </h1>
             <h2>
-              We're building next generation personal finance tools. Sign up to
-              get early access.
+              We're building a next generation re-engagement marketing platform.
+              Stop doing the same old 7-day, 30-day, 60-day lapsed campaigns.
+              Our proprietary algorithm anticipates when users will fall off and
+              gives you the tools to get them back.
             </h2>
             <HeaderForm onSubmit={handleSubmit}>
-              <HeaderInput placeholder="Your email" />
-              <HeaderButton>Early access</HeaderButton>
+              <HeaderInput
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                placeholder="Your email"
+              />
+              {!submit ? (
+                <HeaderButton>Early access</HeaderButton>
+              ) : (
+                <HeaderButton disabled={true}>Submitted</HeaderButton>
+              )}
             </HeaderForm>
-            <FormSubtitle>
-              Already have a beta account?{" "}
-              <FormSubtitleLink to="/">Sign in</FormSubtitleLink>
-            </FormSubtitle>
           </HeaderTextGroup>
           <Text>
             <StyledImage fluid={data.file.childImageSharp.fluid} />
@@ -121,17 +151,17 @@ const HeaderForm = styled.form`
   }
 `
 
-const FormSubtitle = styled.span`
-  ${props => props.theme.font_size.xxsmall}
-`
+// const FormSubtitle = styled.span`
+//   ${props => props.theme.font_size.xxsmall}
+// `
 
-const FormSubtitleLink = styled(Link)`
-  color: ${props => props.theme.color.secondary};
-  padding-bottom: 1px;
-  margin-left: 8px;
-  text-decoration: none;
-  border-bottom: 1px solid ${props => props.theme.color.secondary};
-`
+// const FormSubtitleLink = styled(Link)`
+//   color: ${props => props.theme.color.secondary};
+//   padding-bottom: 1px;
+//   margin-left: 8px;
+//   text-decoration: none;
+//   border-bottom: 1px solid ${props => props.theme.color.secondary};
+// `
 
 const HeaderInput = styled.input`
   font-weight: 500;

@@ -7,12 +7,13 @@ const Features = () => (
   <Section id="features">
     <StyledContainer>
       <Subtitle>Features</Subtitle>
-      <SectionTitle>Smart money management</SectionTitle>
+      <SectionTitle>Win Back Your Customers</SectionTitle>
       <FeaturesGrid>
         <FeatureItem>
-          <FeatureTitle>Notifications</FeatureTitle>
+          <FeatureTitle>Prediction</FeatureTitle>
           <FeatureText>
-            Receive budget and spending alerts based on your favorite triggers.
+            Best in class algorithm that predicts exactly when your users will
+            lapse.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
@@ -23,25 +24,17 @@ const Features = () => (
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Automation</FeatureTitle>
+          <FeatureTitle>Connections</FeatureTitle>
           <FeatureText>
-            Create smart automated workflows and triggers for your money.
+            We connect with many of the major marketing platforms so you can
+            utilize your WinBack data in real-time.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Aggregation</FeatureTitle>
+          <FeatureTitle>Analytics</FeatureTitle>
           <FeatureText>
-            Easily link up to 5 banks to your finance account.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-          <FeatureTitle>Payments</FeatureTitle>
-          <FeatureText>Send money to friends and family with ease.</FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-          <FeatureTitle>Rewards</FeatureTitle>
-          <FeatureText>
-            High interest and rewards for hitting your goals.
+            Our analytics dashboard gives you an easy way to see how your
+            segments are performing.
           </FeatureText>
         </FeatureItem>
       </FeaturesGrid>

@@ -1,13 +1,53 @@
 import React from "react"
 import styled from "styled-components"
+import { PricingTable, PricingSlot, PricingDetail } from "react-pricing-table"
 
 import { Container, Section } from "../global"
 
 const GetStarted = () => (
-  <StyledSection>
+  <StyledSection id="pricing">
     <GetStartedContainer>
+      <PricingTable highlightColor="#38d39f">
+        <PricingSlot title="STARTUP" priceText="$80/month">
+          <PricingDetail>
+            Up to <b>10,000</b> users/mo
+          </PricingDetail>
+          <PricingDetail>
+            {" "}
+            <b>3</b> Data Connections
+          </PricingDetail>
+          <PricingDetail>
+            {" "}
+            <b>3</b> Users
+          </PricingDetail>
+          <PricingDetail>Analytics Dashboard</PricingDetail>
+        </PricingSlot>
+        <PricingSlot highlighted title="BUSINESS" priceText="$300/month">
+          <PricingDetail> Up to 50,000 users/mo</PricingDetail>
+          <PricingDetail>
+            {" "}
+            <b>5</b> Data Connections
+          </PricingDetail>
+          <PricingDetail>
+            {" "}
+            <b>5</b> Users
+          </PricingDetail>
+          <PricingDetail>Analytics Dashboard</PricingDetail>
+        </PricingSlot>
+        <PricingSlot title="ENTERPRISE" priceText="CUSTOM">
+          <PricingDetail>
+            {" "}
+            <b>Unlimited</b> Data Connections
+          </PricingDetail>
+          <PricingDetail>
+            {" "}
+            <b>10</b> Users
+          </PricingDetail>
+          <PricingDetail>Custom Analytics Dashboard</PricingDetail>
+        </PricingSlot>
+      </PricingTable>
       <GetStartedTitle>Be the first to get the beta</GetStartedTitle>
-      <TryItButton>Get early access</TryItButton>
+      <TryItButtonA href="#top">Get early access</TryItButtonA>
       <Subtitle>No credit card required.</Subtitle>
     </GetStartedContainer>
   </StyledSection>
@@ -33,20 +73,49 @@ const GetStartedTitle = styled.h3`
   text-align: center;
 `
 
-const TryItButton = styled.button`
+// const TryItButton = styled.button`
+//   font-weight: 500;
+//   font-size: 14px;
+//   color: white;
+//   letter-spacing: 1px;
+//   height: 60px;
+//   display: block;
+//   margin-left: 8px;
+//   text-transform: uppercase;
+//   cursor: pointer;
+//   white-space: nowrap;
+//   background: ${props => props.theme.color.secondary};
+//   border-radius: 4px;
+//   padding: 0px 40px;
+//   border-width: 0px;
+//   border-style: initial;
+//   border-color: initial;
+//   border-image: initial;
+//   outline: 0px;
+//   &:hover {
+//     box-shadow: rgba(110, 120, 152, 0.22) 0px 2px 10px 0px;
+//   }
+//   @media (max-width: ${props => props.theme.screen.md}) {
+//   }
+//   @media (max-width: ${props => props.theme.screen.sm}) {
+//     margin-left: 0;
+//   }
+// `
+
+const TryItButtonA = styled.a`
   font-weight: 500;
   font-size: 14px;
   color: white;
   letter-spacing: 1px;
-  height: 60px;
   display: block;
   margin-left: 8px;
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   background: ${props => props.theme.color.secondary};
   border-radius: 4px;
-  padding: 0px 40px;
+  padding: 30px 40px;
   border-width: 0px;
   border-style: initial;
   border-color: initial;
