@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-import Firebase from "firebase"
-import config from "../../config"
 import { v1 as uuidv1 } from "uuid"
+import { database } from "../firebase-wrap"
 
 import { Container } from "../global"
 
@@ -29,7 +28,6 @@ const Header = () => {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      await Firebase.initializeApp(config)
       await writeUserData(uuidv1(), email)
       setSubmit(true)
       setEmail("")
@@ -39,7 +37,7 @@ const Header = () => {
   }
 
   function writeUserData(userId, theEmail) {
-    Firebase.database()
+    database()
       .ref("users/" + userId)
       .set({
         email: theEmail,
