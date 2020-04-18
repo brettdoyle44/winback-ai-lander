@@ -40,6 +40,16 @@ module.exports = {
         icon: `src/images/WinBack-icon.png`,
       },
     },
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: "AIzaSyCtIYJhZYou8M-YOGnNmB4QyzzMBamBL10",
+          authDomain: "winback-b68e4.firebaseapp.com",
+          databaseURL: "https://winback-b68e4.firebaseio.com",
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

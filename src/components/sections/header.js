@@ -3,8 +3,7 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import { v1 as uuidv1 } from "uuid"
-import { database } from "../firebase-wrap"
-
+import firebase from "gatsby-plugin-firebase"
 import { Container } from "../global"
 
 const Header = () => {
@@ -37,7 +36,8 @@ const Header = () => {
   }
 
   function writeUserData(userId, theEmail) {
-    database()
+    firebase
+      .database()
       .ref("users/" + userId)
       .set({
         email: theEmail,

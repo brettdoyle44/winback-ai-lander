@@ -1,5 +1,4 @@
-import firebase from "firebase"
-import config from "../config"
+import firebase from "gatsby-plugin-firebase"
 
 const lazy = fn => {
   let isLoaded = false
@@ -13,7 +12,7 @@ const lazy = fn => {
   }
 }
 
-const app = lazy(() => firebase.initializeApp(config))
+const app = lazy(() => firebase.initializeApp())
 const database = lazy(() => app().database())
 
 export { app, database }
